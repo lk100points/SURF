@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>SAF SURF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter+Tight:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Игровой контейнер -->
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+        
+        <!-- HUD (Внутриигровой интерфейс) -->
+        <div id="hud" class="ui-layer hidden">
+            <div class="hud-top">
+                <div class="hud-score">
+                    <span id="score-val">0</span>
+                </div>
+                <div class="hud-tea">
+                    <span id="tea-val">0</span>
+                    <div class="tea-icon"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Главное меню -->
+        <div id="menu" class="ui-layer">
+            <div class="menu-content">
+                <h1 class="logo">SAF SURF</h1>
+                <div class="stats">
+                    <p>Рекорд: <span id="menu-highscore">0</span></p>
+                    <p>Чай: <span id="menu-tea-balance">0</span></p>
+                </div>
+                <div class="buttons">
+                    <button id="btn-play" class="btn primary">Играть</button>
+                    <button id="btn-shop" class="btn">Магазин</button>
+                </div>
+                <p class="hint" id="control-hint">Управление: Стрелки / WASD</p>
+            </div>
+        </div>
+
+        <!-- Магазин -->
+        <div id="shop" class="ui-layer hidden">
+            <div class="shop-content">
+                <h2>Кастомизация</h2>
+                <div class="shop-balance">Чай: <span id="shop-tea-balance">0</span></div>
+                
+                <div class="shop-category">
+                    <h3>Кофта</h3>
+                    <div id="shop-sweaters" class="color-grid"></div>
+                </div>
+                
+                <div class="shop-category">
+                    <h3>Кроссовки</h3>
+                    <div id="shop-sneakers" class="color-grid"></div>
+                </div>
+                
+                <button id="btn-shop-back" class="btn">Назад</button>
+            </div>
+        </div>
+
+        <!-- Экран результатов -->
+        <div id="gameover" class="ui-layer hidden">
+            <div class="gameover-content">
+                <h2>Игра окончена</h2>
+                <div class="result-stats">
+                    <p>Счет: <span id="go-score">0</span></p>
+                    <p>Собрано чая: <span id="go-tea">0</span></p>
+                    <p>Рекорд: <span id="go-highscore">0</span></p>
+                </div>
+                <div class="buttons">
+                    <button id="btn-restart" class="btn primary">Заново</button>
+                    <button id="btn-menu" class="btn">В меню</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="game.js"></script>
+</body>
+</html>

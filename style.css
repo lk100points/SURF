@@ -1,0 +1,285 @@
+:root {
+    --bg-dark: #0B1020;
+    --bg-darker: #101A33;
+    --asphalt: #14161C;
+    --road-line: #E8EEF7;
+    --light-warm: #FFB35C;
+    --light-cold: #4FD1FF;
+    --tea-green: #7CFF6B;
+    --police-blue: #3C7BFF;
+    --police-red: #FF3C4E;
+    --text-main: #E8EEF7;
+    --text-muted: #8A99B5;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-ui: 'Inter Tight', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--bg-dark);
+    font-family: var(--font-ui);
+    color: var(--text-main);
+    touch-action: none;
+    overscroll-behavior: none;
+}
+
+#game-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--asphalt);
+    overflow: hidden;
+}
+
+#game-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    outline: none;
+}
+
+/* UI Layers */
+.ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    background: rgba(11, 16, 32, 0.85);
+}
+
+.ui-layer.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* HUD */
+#hud {
+    background: transparent;
+    justify-content: flex-start;
+    padding: 20px;
+    pointer-events: none;
+}
+
+.hud-top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.hud-score {
+    font-family: var(--font-display);
+    font-size: 48px;
+    line-height: 1;
+    color: var(--road-line);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.hud-tea {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: var(--tea-green);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.tea-icon {
+    width: 16px;
+    height: 24px;
+    background-color: var(--tea-green);
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--tea-green);
+}
+
+/* Menus & Buttons */
+.menu-content, .shop-content, .gameover-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-size: 72px;
+    letter-spacing: 2px;
+    color: var(--light-cold);
+    text-shadow: 0 4px 0 var(--bg-darker);
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-family: var(--font-display);
+    font-size: 48px;
+    letter-spacing: 1px;
+}
+
+h3 {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.stats p, .result-stats p {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+.stats span, .result-stats span {
+    color: var(--text-main);
+    font-weight: 800;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn {
+    font-family: var(--font-ui);
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 16px 24px;
+    min-height: 54px;
+    border: 2px solid var(--text-muted);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    outline: none;
+}
+
+.btn:hover, .btn:focus-visible {
+    border-color: var(--light-cold);
+    background: rgba(79, 209, 255, 0.1);
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn.primary {
+    border-color: var(--light-cold);
+    background: rgba(79, 209, 255, 0.2);
+    color: var(--light-cold);
+}
+
+.btn.primary:hover, .btn.primary:focus-visible {
+    background: var(--light-cold);
+    color: var(--bg-dark);
+}
+
+.hint {
+    margin-top: 24px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* Shop */
+.shop-content {
+    max-width: 500px;
+    width: 100%;
+}
+
+.shop-balance {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--tea-green);
+}
+
+.shop-category {
+    width: 100%;
+    text-align: left;
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    width: 100%;
+}
+
+.color-btn {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    border: 3px solid transparent;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.1s;
+}
+
+.color-btn:active {
+    transform: scale(0.95);
+}
+
+.color-btn.selected {
+    border-color: var(--road-line);
+    box-shadow: 0 0 12px rgba(232, 238, 247, 0.4);
+}
+
+.color-btn.locked::after {
+    content: attr(data-price);
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: #fff;
+    background: rgba(0,0,0,0.6);
+    padding: 2px 0;
+}
+
+.color-btn.locked {
+    opacity: 0.6;
+}
+
+/* Game Over */
+.gameover-content {
+    background: rgba(16, 26, 51, 0.9);
+    padding: 40px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(232, 238, 247, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .logo { font-size: 56px; }
+    .hud-score { font-size: 36px; }
+    .hud-tea { font-size: 24px; }
+    .color-grid { grid-template-columns: repeat(3, 1fr); }
+}
